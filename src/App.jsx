@@ -27,24 +27,23 @@ function App() {
   ]
 
   const [cedulaBusqueda, setCedulaBusqueda] = useState('')
-  const [resultadoBusqueda, setResultadoBusqueda] = useState('')
+  const [resultadoBusqueda, setResultadoBusqueda] = useState("")
 
   const handleInputChange = (event) => {
     setCedulaBusqueda(event.target.value)
   }
 
   const handleBuscar = (event) => {
-    event.preventDefault() // Evita la recarga de la página al enviar el formulario
-
+    event.preventDefault()
     const cedulaLimpia = cedulaBusqueda.replace(/[^0-9]/g, '') // Elimina caracteres no numéricos
     const estudianteEncontrado = estudiantes.find(
       (estudiante) => estudiante.cedula.replace(/[^0-9]/g, '') === cedulaLimpia
     )
 
     if (estudianteEncontrado) {
-      setResultadoBusqueda(`¡Estudiante encontrado! Nombre: ${estudianteEncontrado.nombres} (C.I. ${estudianteEncontrado.cedula})`)
+      setResultadoBusqueda("true")
     } else {
-      setResultadoBusqueda('Estudiante no encontrado.')
+      setResultadoBusqueda("false")
     }
   }
   return (
@@ -82,9 +81,21 @@ function App() {
             </form>
           </div>
         </div>
-        {resultadoBusqueda && <p className="mt-4 text-center">{resultadoBusqueda}</p>}
+        {resultadoBusqueda && <p className="mt-4">{resultadoBusqueda == "true" ? (
+          <div className="max-w-[60vw]">
+            <div className="text-center">
+              <h2 className="mt-12 mb-4 font-bold text-slate-600 text-2xl uppercase">INOFRMACION importante</h2>
+              Se le informa a los estudiantes del programa de Medicina que solicitaron reingreso a los semestres clínicos (7mo al 10mo) que deben acudir el <b>jueves 8 de mayo</b> para recibir los lineamientos sobre su solicitud
+            </div>
+            <ul className="flex flex-col gap-2">
+              <li><b>Dia:</b> jueves 8 de mayo</li>
+              <li><b>Lugar:</b> oficina del DIDA Complejo Académico Alfredo Van Grieken, "Cubo Azul" primer piso</li>
+              <li><b>Hora:</b> 8:00am</li>
+            </ul>
+          </div>
+        ) : "Tu cédula no se encuentra en el listado"}</p>}
       </div>
-    </div>
+    </div >
   )
 }
 

@@ -31,10 +31,11 @@ function App() {
         <img src="logo.webp" alt="LOGO UNEFM" className="w-auto h-12 md:h-18" />
       </div>
       <div className="flex flex-col justify-center items-center px-6 w-full h-[60vh] md:h-[80vh]">
-        <div className="block bg-white shadow-xl p-6 py-12 border border-gray-200 rounded-lg w-full md:w-[30vw]">
+        <div className="block bg-white shadow-xl p-6 py-12 border border-gray-200 rounded-lg w-full md:w-[30vw] text-center">
           <h1 className="font-bold text-slate-600 text-xl text-center uppercase">
-            Clinica semestral Lapso académico 2025 - I
+            Clinica semestral
           </h1>
+          <h2 className='mt-1 text-md'> Lapso académico <b>2025 - I</b></h2>
           <div className="mt-4">
             <form className="mx-auto" onSubmit={handleBuscar}>
               <label htmlFor="default-search" className="sr-only mb-2 font-medium text-gray-900 dark:text-white text-sm">Buscar</label>

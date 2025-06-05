@@ -32,7 +32,9 @@ function App() {
       </div>
       <div className="flex flex-col justify-center items-center px-6 w-full h-[60vh] md:h-[80vh]">
         <div className="block bg-white shadow-xl p-6 py-12 border border-gray-200 rounded-lg w-full md:w-[30vw]">
-          <h1 className="font-bold text-slate-600 text-xl md:text-2xl text-center uppercase">Buscar Estudiante</h1>
+          <h1 className="font-bold text-slate-600 text-xl md:text-2xl text-center uppercase">
+            LISTADO DE CLINICAS SEMESTRAL 2025-3
+          </h1>
           <div className="mt-4">
             <form className="mx-auto" onSubmit={handleBuscar}>
               <label htmlFor="default-search" className="sr-only mb-2 font-medium text-gray-900 dark:text-white text-sm">Buscar</label>

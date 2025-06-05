@@ -35,7 +35,7 @@ function App() {
           <h1 className="font-bold text-slate-600 text-xl text-center uppercase">
             Clinica semestral
           </h1>
-          <h2 className='mt-1 text-md'> Lapso académico <b>2025 - I</b></h2>
+          <h2 className='mt-1 text-md text-slate-500'> Lapso académico <b>2025 - I</b></h2>
           <div className="mt-4">
             <form className="mx-auto" onSubmit={handleBuscar}>
               <label htmlFor="default-search" className="sr-only mb-2 font-medium text-gray-900 dark:text-white text-sm">Buscar</label>

@@ -33,7 +33,7 @@ function App() {
       <div className="flex flex-col justify-center items-center px-6 w-full h-[60vh] md:h-[80vh]">
         <div className="block bg-white shadow-xl p-6 py-12 border border-gray-200 rounded-lg w-full md:w-[30vw]">
           <h1 className="font-bold text-slate-600 text-xl md:text-2xl text-center uppercase">
-            LISTADO DE CLINICAS SEMESTRAL 2025-3
+            Clinica semestral Lapso académico 2025 - I
           </h1>
           <div className="mt-4">
             <form className="mx-auto" onSubmit={handleBuscar}>

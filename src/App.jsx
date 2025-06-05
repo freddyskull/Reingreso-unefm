@@ -1,33 +1,10 @@
 import "./App.css"
 import React, { useState } from 'react'
-
+import estudiantes from './clinicas.json'
 function App() {
-  const estudiantes = [
-    { nombres: "Dulce Maria Guerrero Fernandez", cedula: "21447946" },
-    { nombres: "Osirys Nakary Cadenas", cedula: "25619365" },
-    { nombres: "Mara Janeth Illescas Galan", cedula: "20980357" },
-    { nombres: "Maria Gabriela Marcano Lugo", cedula: "20665516" },
-    { nombres: "Victoria Jose Ruiz Castillo", cedula: "28499458" },
-    { nombres: "Anavid Nazaret Campos Diaz", cedula: "27116874" },
-    { nombres: "Carlos Ramon Paredes Montilla", cedula: "25299988" },
-    { nombres: "Eglesca Hidalgo", cedula: "14734789" },
-    { nombres: "Micheel Andreina Teran Fernandez", cedula: "27074398" },
-    { nombres: "Orlando Jose Galue Chirino", cedula: "26904427" },
-    { nombres: "Kysbeixis Alexandra Rodriguez Guerra", cedula: "25033708" },
-    { nombres: "Freddy Ernesto Garrido Nuñes", cedula: "25460591" },
-    { nombres: "Sharly Nazareth Berrios Marquez", cedula: "27806687" },
-    { nombres: "Dilcia Leon", cedula: "7456023" },
-    { nombres: "Marley Valeria Garcia Ospina", cedula: "28460600" },
-    { nombres: "Carmen Teresa Aguirre Mena", cedula: "24823623" },
-    { nombres: "Sairi Tarazona Betancourt", cedula: "28277154" },
-    { nombres: "Yolenny Mariana Colmenarez Gutierrez", cedula: "26085045" },
-    { nombres: "ORTUNEZ MARIA", cedula: "26085043" },
-    { nombres: "CHIRINOS ROSIANGEL", cedula: "30353701" },
-    { nombres: "MAVAREZ ANDREA", cedula: "27247797" },
-  ]
-
   const [cedulaBusqueda, setCedulaBusqueda] = useState('')
   const [resultadoBusqueda, setResultadoBusqueda] = useState("")
+  const [result, setResult] = useState({})
 
   const handleInputChange = (event) => {
     setCedulaBusqueda(event.target.value)
@@ -37,17 +14,19 @@ function App() {
     event.preventDefault()
     const cedulaLimpia = cedulaBusqueda.replace(/[^0-9]/g, '') // Elimina caracteres no numéricos
     const estudianteEncontrado = estudiantes.find(
-      (estudiante) => estudiante.cedula.replace(/[^0-9]/g, '') === cedulaLimpia
+      (estudiante) => estudiante.CEDULA.replace(/[^0-9]/g, '') === cedulaLimpia
     )
 
     if (estudianteEncontrado) {
       setResultadoBusqueda("true")
+      setResult({ ...estudianteEncontrado })
     } else {
       setResultadoBusqueda("false")
+      setResult({})
     }
   }
   return (
-    <div class="top-0 z-[-2] absolute bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] bg-white w-screen h-screen">
+    <div class="">
       <div className="mx-auto mt-6 ml-4 container">
         <img src="logo.webp" alt="LOGO UNEFM" className="w-auto h-12 md:h-18" />
       </div>
@@ -81,19 +60,30 @@ function App() {
             </form>
           </div>
         </div>
-        {resultadoBusqueda && <p className="mt-4">{resultadoBusqueda == "true" ? (
-          <div className="max-w-[60vw]">
-            <div className="text-center">
-              <h2 className="mt-12 mb-4 font-bold text-slate-600 text-2xl uppercase">INOFRMACION importante</h2>
-              Se le informa a los estudiantes del programa de Medicina que solicitaron reingreso a los semestres clínicos (7mo al 10mo) que deben acudir el <b>jueves 8 de mayo</b> para recibir los lineamientos sobre su solicitud
+        {resultadoBusqueda && <div className="mt-4">{resultadoBusqueda == "true" ? (
+          <div className="w-[90vw] md:w-[30vw]">
+            <div className="flex flex-col justify-center items-center text-center">
+              <h2 className="mt-12 mb-4 font-bold text-md text-slate-600 md:text-2xl uppercase">{result.NOMBRES}</h2>
+              <table className="w-full">
+                <thead className='bg-slate-600 p-4 rounded-tl-lg w-full text-slate-300'>
+                  <tr>
+                    <th className="p-2 border border-white-300 md:text-left text-center"><p>CLINICA</p></th>
+                    <th className="p-2 md:text-left text-center"><p>HOSPITAL</p></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border border-slate-400">
+                    <td className="p-2 border border-slate-400 md:text-left text-center"><p>{result.CLINICA}</p></td>
+                    <td className="p-2 md:text-left text-center"><p>{result.HOSPITAL}</p></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <ul className="flex flex-col gap-2">
-              <li><b>Dia:</b> jueves 8 de mayo</li>
-              <li><b>Lugar:</b> oficina del DIDA Complejo Académico Alfredo Van Grieken, "Cubo Azul" primer piso</li>
-              <li><b>Hora:</b> 8:00am</li>
-            </ul>
+
           </div>
-        ) : "Tu cédula no se encuentra en el listado"}</p>}
+        ) : (<h1 className="font-bold text-slate-600 text-xl uppercase">Tu cédula no está en la lista</h1>)}
+        </div>
+        }
       </div>
     </div >
   )
